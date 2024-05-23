@@ -18,18 +18,18 @@ def GenerateRandomText(numOfWords):
         allWordsList = file.readlines()
     newWordsList = []
     for i in range(0, numOfWords):
-        newWord = allWordsList[randint(0, len(allWordsList) - 1)].replace("\n", " ")
+        newWord = allWordsList[randint(0, len(allWordsList) - 1)].replace("\n", "")
         newWordsList.append(newWord)
     newWordsText = ""
     for j in newWordsList:
-        newWordsText += j
+        newWordsText += j + " "
     
     return newWordsText.rstrip()
 
 def PrintWPM():
     WPMWindow = curses.newwin(0, 15, 4, 0)
     wpm = 60 * len(text.split(" ")) / elapsedTime
-    stdscr.addnstr(4, 0, "WPM: " + (str(round(wpm, 2))), 15)
+    WPMWindow.addstr("WPM: " + (str(round(wpm, 2))))
     WPMWindow.refresh()
     WPMWindow.erase()
 
@@ -93,9 +93,9 @@ while True:
 
 endTime = time.perf_counter()
 elapsedTime = endTime - startTime
-PrintWPM()
+
 PrintAccuracy()
+PrintWPM()
 
 stdscr.refresh()
-
 stdscr.getch()
