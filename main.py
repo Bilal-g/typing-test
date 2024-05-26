@@ -72,20 +72,20 @@ while True:
         startTime = time.perf_counter()
         timerIsStarted = True
     
-    if key == 8:
+    if 8 == key:
         if index != 0:
             PressBackspace()
+            dontAddNextChar = True
             index -= 1
 
     elif chr(key) == textList[index]:
-        stdscr.addch(textList[index], GREENONBLACK)
+        stdscr.addch(chr(key), GREENONBLACK)
         index += 1
         userTextList.append(chr(key))
     elif chr(key) != textList[index]:
-        stdscr.addch(textList[index], REDONBLACK)
+        stdscr.addch(chr(key), REDONBLACK)
         index += 1
         userTextList.append(chr(key))
-    
 
     stdscr.refresh()
     if index == len(textList):
@@ -96,6 +96,5 @@ elapsedTime = endTime - startTime
 
 PrintAccuracy()
 PrintWPM()
-
 stdscr.refresh()
 stdscr.getch()
