@@ -75,15 +75,25 @@ while True:
     if 8 == key:
         if index != 0:
             PressBackspace()
-            dontAddNextChar = True
             index -= 1
+    
+    elif 9 == key:
+        text = GenerateRandomText(20)
+        textList = list(text)
+        userTextList = []
+        stdscr.clear()
+        stdscr.addstr(text)
+        stdscr.move(0, 0)
+        stdscr.refresh()
+        index = 0
+        timerIsStarted = False
 
     elif chr(key) == textList[index]:
-        stdscr.addch(chr(key), GREENONBLACK)
+        stdscr.addch(textList[index], GREENONBLACK)
         index += 1
         userTextList.append(chr(key))
     elif chr(key) != textList[index]:
-        stdscr.addch(chr(key), REDONBLACK)
+        stdscr.addch(textList[index], REDONBLACK)
         index += 1
         userTextList.append(chr(key))
 
